@@ -19,7 +19,7 @@ module.exports.cartsController = {
     try {
       const cart = await Cart.findById(req.params.id);
       const data = await Medicine.findById(req.body.medications);
-      if (data.haveRecipe == false) {
+      if (data.haveRecipe === false) {
         await Cart.findByIdAndUpdate(req.params.id, {
           $push: { medications: req.body.medications },
         });
