@@ -1,10 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const hbs = require("express-handlebars");
+const fileUpload = require("express-fileupload");
+const path = require("path");
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, "public")));
+app.use(fileUpload());
 app.use(express.json());
 app.use(require("./routes/index"));
+
+app.engine(".hbs", hbs({ extname: ".hbs" }));
+app.set("view engine", ".hbs");
 
 mongoose
   .connect(

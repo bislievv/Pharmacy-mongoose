@@ -13,8 +13,10 @@ module.exports.categoriesController = {
   },
   getGenres: async (req, res) => {
     try {
-      const data = await Category.find({});
-      res.json(data);
+      const data = await Category.find({}).lean();
+      res.render("categories", {
+        data,
+      });
     } catch (err) {
       res.json(err);
     }

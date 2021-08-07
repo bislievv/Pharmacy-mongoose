@@ -24,4 +24,14 @@ module.exports.usersController = {
       res.json(err);
     }
   },
+  getUsers: async (req, res) => {
+    try {
+      const data = await User.find({}).lean();
+      res.render("account", {
+        data,
+      });
+    } catch (err) {
+      res.json(err);
+    }
+  },
 };

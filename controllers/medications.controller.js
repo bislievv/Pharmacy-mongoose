@@ -3,16 +3,20 @@ const Medicine = require("../models/Medicine.model");
 module.exports.medicationsController = {
   getMedications: async (req, res) => {
     try {
-      const data = await Medicine.find({});
-      res.json(data);
+      const data = await Medicine.find({}).lean();
+      res.render("home", {
+        data,
+      });
     } catch (err) {
       res.json(err);
     }
   },
   getMedicineByCategory: async (req, res) => {
     try {
-      const data = await Medicine.find({ category: req.params.id });
-      res.json(data);
+      const data = await Medicine.find({ category: req.params.id }).lean();
+      res.render("severalMed", {
+        data,
+      });
     } catch (err) {
       res.json(err);
     }

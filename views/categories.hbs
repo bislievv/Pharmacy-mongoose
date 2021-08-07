@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Categories:</h1>
+      <ul class="categ_nav">
+        {{#each data}}
+          <li><a href="/medications/categories/{{_id}}">{{name}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
