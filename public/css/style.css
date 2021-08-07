@@ -46,3 +46,22 @@
 .categ_nav li a:hover {
   color: white;
 }
+
+.category_med {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.category_med li a {
+  text-decoration: none;
+  color: #0a1128;
+  font-size: 20px;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.category_med li a:hover {
+  color: #26c5f3;
+}
