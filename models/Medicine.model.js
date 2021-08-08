@@ -8,6 +8,7 @@ const medicineSchema = mongoose.Schema({
     ref: "Category",
   },
   haveRecipe: Boolean,
+  image: String,
 });
 
 const Medicine = mongoose.model("Medicine", medicineSchema);

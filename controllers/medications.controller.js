@@ -66,4 +66,24 @@ module.exports.medicationsController = {
       res.json(err);
     }
   },
+  addImage: async (req, res) => {
+    try {
+      const newFileName = `/image/${Math.random() * 10000}${path.extname(
+        req.files.image.name
+      )}`;
+
+      req.files.image.mv(`./public${newFileName}`, async (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          await Medicine.findByIdAndUpdate(req.params.id, {
+            image: newFileName,
+          });
+          res.json("Файл загружен");
+        }
+      });
+    } catch (err) {
+      res.json(err);
+    }
+  },
 };
