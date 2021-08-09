@@ -27,7 +27,7 @@ module.exports.usersController = {
   getUsers: async (req, res) => {
     try {
       const data = await User.find({}).lean();
-      res.render("account", {
+      res.render("cart", {
         data,
       });
     } catch (err) {

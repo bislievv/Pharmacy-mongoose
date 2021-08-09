@@ -18,16 +18,16 @@ module.exports.cartsController = {
   addMedicine: async (req, res) => {
     try {
       const cart = await Cart.findById(req.params.id);
-      const data = await Medicine.findById(req.body.medications);
+      const data = await Medicine.findById(req.params.medId);
       if (data.haveRecipe === false) {
         await Cart.findByIdAndUpdate(req.params.id, {
-          $push: { medications: req.body.medications },
+          $push: { medications: req.params.medId },
         });
 
-        await Cart.findByIdAndUpdate(cart, {
+        await Cart.findByIdAndUpdate(req.params.id, {
           total: cart.total + data.price,
         });
-        res.json("Лекарство добавлено");
+        res.redirect(`http://localhost:3000/medications/${data._id}`);
       } else {
         res.json("Лекарство без рецепта не продается");
       }
@@ -37,10 +37,11 @@ module.exports.cartsController = {
   },
   deleteMedicine: async (req, res) => {
     try {
-      await Cart.findByIdAndUpdate(req.params.id, {
-        $pull: { medications: req.body.medications },
+      const cart = await Cart.find({ user: req.params.id });
+      await Cart.findByIdAndUpdate(cart._id, {
+        $pull: { medications: req.params.medId },
       });
-      res.json("Лекарство удалено");
+      res.redirect(`http://localhost:3000/carts/${cart._id}`);
     } catch (err) {
       res.json(err);
     }
@@ -55,8 +56,12 @@ module.exports.cartsController = {
   },
   getAllMedications: async (req, res) => {
     try {
-      const data = await Cart.findById(req.params.id).populate("medications");
-      res.json(data);
+      const data = await Cart.find({ user: req.params.id })
+        .lean()
+        .populate("medications");
+      res.render("certainCart", {
+        data,
+      });
     } catch (err) {
       res.json(err);
     }

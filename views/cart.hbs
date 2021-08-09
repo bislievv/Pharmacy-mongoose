@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
       <div class="col-6">
-          <ul>
+          <ul class="users_menu">
               {{#each data}}
-                  <li>{{name}}</li>
+                  <li><a href="carts/{{_id}}/">{{name}}</a></li>
               {{/each}}
           </ul>
       </div>
