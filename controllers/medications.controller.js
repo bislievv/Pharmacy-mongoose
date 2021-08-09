@@ -1,3 +1,4 @@
+const path = require("path");
 const Medicine = require("../models/Medicine.model");
 
 module.exports.medicationsController = {
@@ -23,8 +24,10 @@ module.exports.medicationsController = {
   },
   getMedicine: async (req, res) => {
     try {
-      const data = await Medicine.findById(req.params.id);
-      res.json(data);
+      const data = await Medicine.findById(req.params.id).lean();
+      res.render("singleMed", {
+        data,
+      });
     } catch (err) {
       res.json(err);
     }

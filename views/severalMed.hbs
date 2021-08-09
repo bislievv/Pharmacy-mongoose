@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Drugs by category:</h1>
-      <ul class="category_med">
+      <h2>Drugs by category:</h2>
+      <ul class="all_drugs">
         {{#each data}}
-          <li><a href="/medications/categories/{{_id}}">{{name}}</a></li>
+          <a href="/medications/{{_id}}"><li><div class="drugs_text">{{name}}</div> <img src="{{image}}" alt=""><div class="drugs_price">{{price}} ₽</div></li></a>
         {{/each}}
       </ul>
     </div>

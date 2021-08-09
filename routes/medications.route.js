@@ -15,5 +15,6 @@ router.post("/admin/medications", medicationsController.addMedicine);
 router.get("/admin/medications", medicationsController.adminGetMedications);
 router.delete("/admin/medications/:id", medicationsController.deleteMedicine);
 router.patch("/admin/medications/:id", medicationsController.editMedicine);
+router.post("/admin/medications/:id", medicationsController.addImage);
 
 module.exports = router;

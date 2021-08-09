@@ -3,22 +3,26 @@
   margin: 0px;
   box-sizing: border-box;
 }
+body {
+  background-color: #edf0f2;
+}
 
 .header_nav {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
-  background-color: #0a1128;
+  background-color: #2ad1c5;
   padding: 10px;
   border-radius: 5px;
   margin-top: 3px;
 }
 .header_nav li a {
-  color: #26c5f3;
+  color: white;
   text-decoration: none;
+  font-weight: 700;
 }
 .header_nav li a:hover {
-  color: #fefcfb;
+  color: yellow;
 }
 
 .categ_nav {
@@ -27,25 +31,22 @@
 }
 
 .categ_nav li {
-  border: 1px solid #034078;
   width: 150px;
   border-radius: 5px;
-  padding: 5px;
-  margin-top: 3px;
-  background-color: #0a1128;
-}
-
-.categ_nav li:hover {
-  background-color: black;
+  padding: 4px;
+  margin-top: 5px;
+  background-color: white;
 }
 
 .categ_nav li a {
   text-decoration: none;
-  color: #26c5f3;
+  color: black;
+  display: inline-block;
+  font-weight: 500;
 }
 
 .categ_nav li a:hover {
-  color: white;
+  color: #2ad1c5;
 }
 
 .category_med {
@@ -53,7 +54,7 @@
   padding-left: 0px;
 }
 
-.category_med li{
+.category_med li {
   margin-top: 15px;
 }
 
@@ -69,4 +70,77 @@
 
 .category_med li a:hover {
   color: #26c5f3;
+}
+
+.img_med img {
+  width: 400px;
+}
+
+h2 {
+  color: #023047;
+}
+
+.cart_link {
+  text-decoration: none;
+  background-color: #2ad1c5;
+  padding: 10px;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+}
+
+.cart_link:hover {
+  color: yellow;
+}
+
+.bg_white {
+  background-color: white;
+  margin-left: 13px;
+  border-radius: 10px;
+}
+
+.all_drugs {
+  list-style-type: none;
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.all_drugs li {
+  background-color: white;
+  width: 200px;
+  height: 240px;
+  border-radius: 10px;
+}
+
+.all_drugs li:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.all_drugs a {
+  text-decoration: none;
+  color: #023047;
+}
+
+.all_drugs li img {
+  width: 150px;
+  margin-left: 30px;
+}
+
+.drugs_text {
+  margin: 15px;
+  padding-top: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #2ad1c5;
+}
+
+.drugs_price {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
 }
