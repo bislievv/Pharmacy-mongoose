@@ -150,8 +150,13 @@ h2 {
   padding: 0px;
 }
 
-.users_menu li a{
+.users_menu li a {
   text-decoration: none;
+  color: #293241;
+}
+
+.users_menu li a:hover {
+  border-bottom: 2px solid #168aad;
 }
 
 .cart_item {
@@ -165,11 +170,15 @@ h2 {
   border-radius: 10px;
 }
 
-.cart_item img{
+.cart_item:hover {
+  box-shadow: 0 0 10px #2ad1c5;
+}
+
+.cart_item img {
   width: 150px;
 }
 
-.cart_item span{
+.cart_item span {
   width: 130px;
 }
 
@@ -186,20 +195,68 @@ h2 {
 
 .btn_buy {
   background: #fff;
-  border: 1px solid #2AD1C5;
-  border-radius: 24px;
+  border: 1px solid #2ad1c5;
+  border-radius: 10px;
   font-size: 18px;
   line-height: 24px;
-  color: #2AD1C5;
+  color: #2ad1c5;
   padding: 5px 18px;
   text-align: center;
   text-decoration: none;
   transition: 0.5s;
-  display:inline-block;
+  display: inline-block;
+  margin-bottom: 150px;
+}
+.btn_clear {
+  background: #fff;
+  border: 1px solid #ef233c;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ef233c;
+  padding: 5px 18px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
+  display: inline-block;
   margin-bottom: 150px;
 }
 
-.btn_buy:hover {
-  background-color: #2AD1C5;
+.btn_replenish {
+  background: #fff;
+  border: 1px solid #2ad1c5;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #2ad1c5;
+  padding: 5px 18px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
+  display: inline-block;
+}
+
+.btn_clear:hover {
+  background-color: #ef233c;
   color: #fff;
+}
+
+.btn_buy:hover,
+.btn_replenish:hover {
+  background-color: #2ad1c5;
+  color: #fff;
+}
+
+.recipe {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.money {
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #219ebc;
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
 }

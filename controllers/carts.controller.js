@@ -37,19 +37,33 @@ module.exports.cartsController = {
   },
   deleteMedicine: async (req, res) => {
     try {
-      const cart = await Cart.find({ user: req.params.id });
-      await Cart.findByIdAndUpdate(cart._id, {
-        $pull: { medications: req.params.medId },
-      });
-      res.redirect(`http://localhost:3000/carts/${cart._id}`);
+      const cart = await Cart.findOne({ user: req.params.id });
+      const data = await Medicine.findById(req.params.medId);
+      await Cart.findOneAndUpdate(
+        { user: req.params.id },
+        {
+          $pull: { medications: req.params.medId },
+        }
+      );
+
+      await Cart.findOneAndUpdate(
+        { user: req.params.id },
+        {
+          total: cart.total - data.price,
+        }
+      );
+      res.redirect(`http://localhost:3000/carts/${req.params.id}/`);
     } catch (err) {
       res.json(err);
     }
   },
   clearCart: async (req, res) => {
     try {
-      await Cart.findByIdAndUpdate(req.params.id, { medications: [] });
-      res.json("Корзина очищена");
+      await Cart.findOneAndUpdate(
+        { user: req.params.id },
+        { medications: [], total: 0 }
+      );
+      res.redirect(`http://localhost:3000/carts/${req.params.id}/`);
     } catch (err) {
       res.json(err);
     }
@@ -58,8 +72,8 @@ module.exports.cartsController = {
     try {
       const data = await Cart.find({ user: req.params.id })
         .lean()
-        .populate("medications");
-      res.render("certainCart", {
+        .populate("medications user");
+      res.render("cart", {
         data,
       });
     } catch (err) {
@@ -68,16 +82,23 @@ module.exports.cartsController = {
   },
   buyFromCart: async (req, res) => {
     try {
-      const cart = await Cart.findById(req.params.id);
-      const user = await User.findById(cart.user);
-      await User.findByIdAndUpdate(user, {
-        money: user.money - cart.total,
-      });
-      await Cart.findByIdAndUpdate(req.params.id, {
-        total: 0,
-        medications: [],
-      });
-      res.json("Покупка совершена");
+      const cart = await Cart.findOne({ user: req.params.id });
+      const user = await User.findById(req.params.id);
+      if (user.money < cart.total) {
+        res.json("Недостаточно средств на счете. Пожалуйтса, пополните счет.");
+      } else {
+        await User.findByIdAndUpdate(req.params.id, {
+          money: user.money - cart.total,
+        });
+        await Cart.findOneAndUpdate(
+          { user: req.params.id },
+          {
+            total: 0,
+            medications: [],
+          }
+        );
+      }
+      res.redirect(`http://localhost:3000/carts/${req.params.id}/`);
     } catch (err) {
       res.json(err);
     }

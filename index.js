@@ -19,7 +19,8 @@ mongoose
     "mongodb+srv://into:code@cluster0.ophke.mongodb.net/pharmacy_db?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
-      useFindAndModify: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
     }
   )
   .then(() => {

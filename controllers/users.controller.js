@@ -17,9 +17,9 @@ module.exports.usersController = {
     try {
       const user = await User.findById(req.params.id);
       await User.findByIdAndUpdate(req.params.id, {
-        money: user.money + req.body.money,
+        money: user.money + 1000,
       });
-      res.json("Счет пополнен");
+      res.redirect(`http://localhost:3000/carts/${user._id}/`);
     } catch (err) {
       res.json(err);
     }
@@ -27,9 +27,7 @@ module.exports.usersController = {
   getUsers: async (req, res) => {
     try {
       const data = await User.find({}).lean();
-      res.render("cart", {
-        data,
-      });
+      res.json(data);
     } catch (err) {
       res.json(err);
     }
